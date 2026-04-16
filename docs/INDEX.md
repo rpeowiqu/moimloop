@@ -8,3 +8,4 @@
   - [V3 플로우](./v3_user_flows.md)
 - [ERD](./entity_modeling.md)
 - [API 명세서](./api_spec.md)
+  - [인증/인가 전략](./authorization_tech_spec.md)
