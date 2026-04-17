@@ -1,0 +1,49 @@
+# dependencies
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# build output
+dist/
+build/
+coverage/
+*.tsbuildinfo
+.cache/
+.tmp/
+tmp/
+temp/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# env files
+.env
+.env.*
+!.env.example
+!.env*.example
+
+# runtime data
+*.pid
+*.pid.lock
+*.seed
+
+# diagnostics
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+!.vscode/extensions.json
