@@ -1,10 +1,13 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Meeting } from "./meeting.entity";
 import { User } from "../../users/entities/user.entity";
 import { MeetingMemberStatus, Role } from "@repo/shared";
+import { MeetingRoundMemberLinks } from "../../rounds/entities/meeting-round-member-links.entity";
+import { MeetingRoundResponse } from "../../rounds/entities/meeting-round-response.entity";
+import { MeetingRoundPrepItem } from "../../rounds/entities/meeting-round-prep-item.entity";
 
 @Entity('meeting_members')
-export class MeetingMembers {
+export class MeetingMember {
 
   @PrimaryGeneratedColumn({
     type: 'bigint',
@@ -57,5 +60,14 @@ export class MeetingMembers {
     type: 'timestamptz',
   })
   leftAt!: Date | null;
+  
+  @OneToOne(() => MeetingRoundMemberLinks, MeetingRoundMemberLinks => MeetingRoundMemberLinks.meetingMember)
+  link!: MeetingRoundMemberLinks | null;
+
+  @OneToOne(() => MeetingRoundResponse, MeetingRoundResponse => MeetingRoundResponse.meetingMember)
+  response!: MeetingRoundResponse | null;
+
+  @OneToMany(() => MeetingRoundPrepItem, MeetingRoundPrepItem => MeetingRoundPrepItem.meetingMember)
+  prepItems!: MeetingRoundPrepItem[] | null;
 
 }

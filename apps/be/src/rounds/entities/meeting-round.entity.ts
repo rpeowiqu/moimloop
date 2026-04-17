@@ -1,6 +1,9 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Meeting } from "../../meetings/entities/meeting.entity";
 import { MeetingRoundStatus } from "@repo/shared";
+import { MeetingRoundMemberLinks } from "./meeting-round-member-links.entity";
+import { MeetingRoundResponse } from "./meeting-round-response.entity";
+import { MeetingRoundPrepItem } from "./meeting-round-prep-item.entity";
 
 @Entity('meeting_rounds')
 export class MeetingRound {
@@ -71,5 +74,14 @@ export class MeetingRound {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updatedAt!: Date;
+
+  @OneToMany(() => MeetingRoundMemberLinks, MeetingRoundMemberLinks => MeetingRoundMemberLinks.meetingRound)
+  meetingRoundLinks!: MeetingRoundMemberLinks[];
+
+  @OneToMany(() => MeetingRoundResponse, MeetingRoundResponse => MeetingRoundResponse.meetingRound)
+  responses!: MeetingRoundResponse[];
+
+  @OneToMany(() => MeetingRoundPrepItem, MeetingRoundPrepItem => MeetingRoundPrepItem.meetingRound)
+  prepItems!: MeetingRoundPrepItem[];
 
 }

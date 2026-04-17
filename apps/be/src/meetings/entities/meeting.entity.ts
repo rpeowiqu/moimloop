@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "../../users/entities/user.entity";
-import { MeetingMembers } from "./meeting-members.entity";
+import { MeetingMember } from "./meeting-member.entity";
 import { MeetingRound } from "../../rounds/entities/meeting-round.entity";
 
 @Entity('meetings')
@@ -11,7 +11,7 @@ export class Meeting {
   })
   id!: string;
 
-  @ManyToOne(() => User, user => user.id, {
+  @ManyToOne(() => User, user => user.meetings, {
     nullable: false,
   })
   @JoinColumn({ name: 'owner_id'})
@@ -52,8 +52,8 @@ export class Meeting {
   })
   updatedAt!: Date;
 
-  @OneToMany(() => MeetingMembers, MeetingMembers => MeetingMembers.meeting)
-  meetingMembers!: MeetingMembers[] | null;
+  @OneToMany(() => MeetingMember, MeetingMembers => MeetingMembers.meeting)
+  meetingMembers!: MeetingMember[] | null;
 
   @OneToMany(() => MeetingRound, MeetingRound => MeetingRound.meeting)
   rounds!: MeetingRound[] | null;

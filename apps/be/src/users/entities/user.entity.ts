@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Meeting } from "../../meetings/entities/meeting.entity";
-import { MeetingMembers } from "../../meetings/entities/meeting-members.entity";
+import { MeetingMember } from "../../meetings/entities/meeting-member.entity";
 
 @Entity('users')
 export class User {
@@ -56,7 +56,7 @@ export class User {
   @OneToMany(() => Meeting, meeting => meeting.owner)
   meetings!: Meeting[] | null;
 
-  @OneToMany(() => MeetingMembers, MeetingMembers => MeetingMembers.user)
-  meetingMembers!: MeetingMembers[] | null;
+  @OneToMany(() => MeetingMember, MeetingMembers => MeetingMembers.user)
+  meetingMembers!: MeetingMember[] | null;
   
 }
