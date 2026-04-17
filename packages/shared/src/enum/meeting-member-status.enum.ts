@@ -1,4 +1,4 @@
-export enum MeetingStatus {
+export enum MeetingMemberStatus {
   ACTIVE = 'ACTIVE',
   LEFT = 'LEFT',
   REMOVED = 'REMOVED',

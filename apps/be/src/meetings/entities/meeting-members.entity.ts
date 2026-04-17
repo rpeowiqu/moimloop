@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Meeting } from "./meeting.entity";
 import { User } from "../../users/entities/user.entity";
-import { MeetingStatus, Role } from "@repo/shared";
+import { MeetingMemberStatus, Role } from "@repo/shared";
 
 @Entity('meeting_members')
 export class MeetingMembers {
@@ -38,11 +38,11 @@ export class MeetingMembers {
 
   @Column({
     type: 'enum',
-    enum: MeetingStatus,
+    enum: MeetingMemberStatus,
     nullable: false,
-    default: MeetingStatus.ACTIVE,
+    default: MeetingMemberStatus.ACTIVE,
   })
-  status!: MeetingStatus;
+  status!: MeetingMemberStatus;
 
   @CreateDateColumn({
     name: 'joined_at',

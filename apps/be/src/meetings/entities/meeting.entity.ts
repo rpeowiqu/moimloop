@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "../../users/entities/user.entity";
 import { MeetingMembers } from "./meeting-members.entity";
+import { MeetingRound } from "../../rounds/entities/meeting-round.entity";
 
 @Entity('meetings')
 export class Meeting {
@@ -53,5 +54,8 @@ export class Meeting {
 
   @OneToMany(() => MeetingMembers, MeetingMembers => MeetingMembers.meeting)
   meetingMembers!: MeetingMembers[] | null;
+
+  @OneToMany(() => MeetingRound, MeetingRound => MeetingRound.meeting)
+  rounds!: MeetingRound[] | null;
 
 }
