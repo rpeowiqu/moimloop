@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Meeting } from "../../meetings/entities/meeting.entity";
+import { MeetingMembers } from "../../meetings/entities/meeting-members.entity";
 
 @Entity('users')
 export class User {
@@ -50,5 +52,11 @@ export class User {
     type: 'timestamptz',
   })
   deletedAt!: Date | null;
+
+  @OneToMany(() => Meeting, meeting => meeting.owner)
+  meetings!: Meeting[] | null;
+
+  @OneToMany(() => MeetingMembers, MeetingMembers => MeetingMembers.user)
+  meetingMembers!: MeetingMembers[] | null;
   
 }
